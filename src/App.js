@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Home from "./screens/Home"
+import Factura from "./screens/Factura"
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 
 function App() {
