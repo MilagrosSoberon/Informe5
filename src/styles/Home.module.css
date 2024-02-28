@@ -1,0 +1,22 @@
+.titulo {
+  font-size: 10em; 
+font-family: 'Arial', sans-serif; 
+color: #ffffff; 
+text-shadow: 2px 2px 4px #000000;
+background: linear-gradient(to right, #4a4fae, #6d71ab);
+border: 2px solid #4a4fae; 
+padding: 60px; 
+transition: all 0.3s ease; 
+}
+
+.titulo:hover {
+  color: #4a4fae; 
+  transform: scale(1.1); 
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #555; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  margin-bottom: 15px; /* Espacio inferior */
+}
