@@ -1,0 +1,22 @@
+
+.cuadrado{
+    margin-top: 70px;
+    border: 1px solid black; 
+    padding: 10px; 
+  
+}
+.titulo-factura{
+    margin-top: 20px;
+    text-align: left;
+}
+.titulo-obrasocial {
+    text-align: center;
+    
+    justify-content: center; 
+    margin: 0 auto; /* Centra horizontalmente el elemento */
+}
+
+
+.form-select.select-al-lado {
+    width: 150px;
+}
