@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import ModalFactura from '../modalFactura'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -8,6 +9,16 @@ const cookies = new Cookies();
 const ListadoFactura = () => {
 
     const [facturas, setFacturas] = useState([]);
+    const [mostrarModal, setMostrarModal] = useState(false);
+
+    const abrirModal = () => {
+        setMostrarModal(true);
+    };
+
+    const cerrarModal = () => {
+        setMostrarModal(false);
+    };
+
 
     useEffect(() => {
         obtenerFacturasPorObraSocial();
@@ -57,7 +68,7 @@ const ListadoFactura = () => {
                             <td>{factura.fechaVencimiento}</td>
                                     
                             <td colSpan={2}>
-                                <button className='btn btn-success' >
+                                <button className='btn btn-success' onClick={abrirModal} disabled={mostrarModal}>
                                     Cobrar
                                 </button>
                             </td>
@@ -65,6 +76,8 @@ const ListadoFactura = () => {
                     ))}
                 </tbody>
             </Table>
+            {/* Renderiza el modal solo si mostrarModal es verdadero */}
+            {mostrarModal && <ModalFactura onClose={cerrarModal} />}
         </div>
     )
 }
