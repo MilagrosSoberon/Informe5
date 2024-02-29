@@ -1,8 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import '../../styles/factura.css'
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const ListadoFactura = () => {
+
+    const [facturas, setFacturas] = useState([]);
+
+    useEffect(() => {
+        obtenerFacturasPorObraSocial();
+
+        // Suscripción a cambios en la cookie 'obraSocial'
+        const handleChange = () => {
+            obtenerFacturasPorObraSocial();
+        };
+
+        cookies.addChangeListener(handleChange);
+
+        // Retirar el listener cuando el componente se desmonta
+        return () => {
+            cookies.removeChangeListener(handleChange);
+        };
+    }, []); // <-- Importante: Dejar la dependencia vacía para que se ejecute solo una vez al montar el componente
+
+    const obtenerFacturasPorObraSocial = async () => {
+        try {
+            const cookieObraSocial = cookies.get('obraSocial');
+            const response = await axios.get(`https://localhost:7147/Factura/factXObraSocial/${cookieObraSocial}`);
+            setFacturas(response.data);
+        } catch (error) {
+            console.error('Error al obtener las facturas:', error);
+        }
+    };
+
     return (
         <div>
             <h2 className='titulo-factura'> Listado de las facturas</h2>
@@ -17,22 +49,24 @@ const ListadoFactura = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>12334</td>
-                        <td>pagada</td>
-                        <td>$1234</td>
-                        <td>10/01</td>
-                        <td colSpan={2}>
-                            <button className='btn btn-success' >
-                                Cobrar
-                            </button>
-                        </td>
-                    </tr>
-
+                    {facturas.map((factura, index) => (
+                        <tr key={index}>
+                            <td>{factura.numero}</td>
+                            <td>{factura.estadoPago}</td>
+                            <td>{factura.importeTotal}</td>
+                            <td>{factura.fechaVencimiento}</td>
+                                    
+                            <td colSpan={2}>
+                                <button className='btn btn-success' >
+                                    Cobrar
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         </div>
     )
 }
 
-export default ListadoFactura
+export default ListadoFactura;
