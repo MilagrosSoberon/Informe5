@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 
 const Home = () => {
   return (
-    <div className='container mt-50'>
+    <div className=''>
       <div className={`text-center ${styles.titulo}`}>
         <h1>AGREAMIACIÓN GONUMI</h1>
       </div>

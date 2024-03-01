@@ -35,6 +35,8 @@ const ListadoFactura = () => {
         }
     };
 
+    
+
 
     const obtenerIdPorNumero = async (facturaSeleccionada) => {
         try {
@@ -96,10 +98,10 @@ const ListadoFactura = () => {
                             <td>{factura.importeTotal}</td>
                             <td>{factura.fechaVencimiento}</td>
                             <td colSpan={2}>
-                                <button
+                            <button
                                     className='btn btn-success'
                                     onClick={() => abrirModal(factura.numero)}
-                                    disabled={mostrarModal}
+                                    disabled={mostrarModal || factura.estadoPago === 'Pagada'} // Aquí se deshabilita el botón si factura.estadoPago es 'pagada'
                                 >
                                     Cobrar
                                 </button>
@@ -109,7 +111,7 @@ const ListadoFactura = () => {
                 </tbody>
             </Table>
             {/* Renderiza el modal solo si mostrarModal es verdadero */}
-            {mostrarModal && <ModalFactura onClose={cerrarModal} factura={dataFactura} />}
+            {mostrarModal && <ModalFactura onClose={cerrarModal} factura={dataFactura} idFactura={idFactura}/>}
         </div>
     )
 }
