@@ -76,7 +76,19 @@ const ListadoFactura = () => {
         };
     }, []); // <-- Importante: Dejar la dependencia vacía para que se ejecute solo una vez al montar el componente
 
-
+    const formatoFecha = (fecha) => {
+        const fechaFormateada = new Date(fecha);
+        const dia = fechaFormateada.getDate();
+        const mes = fechaFormateada.getMonth() + 1;
+        const año = fechaFormateada.getFullYear();
+      
+        // Agrega ceros a la izquierda si el día o el mes tienen un solo dígito
+        const diaFormateado = dia < 10 ? `0${dia}` : dia;
+        const mesFormateado = mes < 10 ? `0${mes}` : mes;
+      
+        return `${diaFormateado}-${mesFormateado}-${año}`;
+      };
+      
     return (
         <div>
             <h2 className='titulo-factura'> Listado de las facturas</h2>
@@ -96,7 +108,8 @@ const ListadoFactura = () => {
                             <td>{factura.numero}</td>
                             <td>{factura.estadoPago}</td>
                             <td>{factura.importeTotal}</td>
-                            <td>{factura.fechaVencimiento}</td>
+                            <td>{formatoFecha(factura.fechaVencimiento)}</td>
+
                             <td colSpan={2}>
                             <button
                                     className='btn btn-success'
