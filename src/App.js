@@ -1,17 +1,18 @@
 import './App.css';
 import Home from "./screens/Home"
 import Factura from "./screens/Factura"
-import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-     <Router>
-      <Routes>
-      <Route element={<Home/>} path="/Agremiacion/Home" />          
-      <Route element={<Factura/>} path="/Agremiacion/ListadoFacturas" />           
-      </Routes>
-     </Router>
+      <Router>
+        <Routes>
+          <Route element={<Home />} path="/Agremiacion/Home" />
+          <Route element={<Factura />} path="/Agremiacion/ListadoFacturas" />
+          <Route path="/" element={<Navigate to="/Agremiacion/Home" />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
