@@ -47,7 +47,7 @@ function ModalFactura({ onClose, factura, idFactura }) {
       console.log('Respuesta de la cobranza:', response.data);
 
       // Muestra un mensaje de éxito utilizando react-toastify
-      toast.success('Carga de bono realizada con éxito')
+      alert('Factura cobrada con éxito')
     } catch (error) {
 
       console.error('Error al realizar la carga:', error.message);

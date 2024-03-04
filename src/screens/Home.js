@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className=''>
       <div className={`text-center ${styles.titulo}`}>
-        <h1>AGREAMIACIÓN GONUMI</h1>
+        <h1>AGREMIACIÓN GONUMI</h1>
       </div>
       <h2 className='mt-3'>Bienvenido! por favor seleccione la operación que desea realizar:</h2> 
       <div className="d-flex justify-content-center mt-5">
